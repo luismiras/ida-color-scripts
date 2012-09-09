@@ -6,9 +6,8 @@ Scripts:
 
 ida_osx_import_theme.py 
     quick hack to import IDA color theme from exported Windows reg file.
-
-	This script generates a new config file. Backup your original.
-	WorksForMe(tm)
+    This script generates a new config file. Backup your original.
+    WorksForMe(tm)
 
 export_IDA_colors.py 
     This is a work in progress. It will export a color theme to YAML.
