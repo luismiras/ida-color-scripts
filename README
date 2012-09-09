@@ -1,0 +1,47 @@
+
+This is a collection of color scripts for IDA Pro. They deal with 
+import and export of color themes.
+
+Scripts:
+
+ida_osx_import_theme.py 
+    quick hack to import IDA color theme from exported Windows reg file.
+
+	This script generates a new config file. Backup your original.
+	WorksForMe(tm)
+
+export_IDA_colors.py 
+    This is a work in progress. It will export a color theme to YAML.
+    The corresponding import from YAML functionality is not complete.
+
+palette_offsets.py 
+    This contains offsets for individual fields within color palettes.
+    It is used by export_ida_colors.py.
+
+IDA Color Theme Background:
+
+IDA Colors are stored in the registry or a pseudo registry in the case
+of OS X and Linux (~/.idapro/ida.reg).
+
+The keys of interest are:
+Palette             REG_BINARY 0x34c
+NavPalette          REG_BINARY 0x24 
+NavPaletteExtended  REG_BINARY 0x4 
+DebuggerPalette     REG_BINARY 0x2c 
+ArrowsPalette       REG_BINARY 0x14 
+GraphPalette        REG_BINARY 0x3c 
+MiscPalette         REG_BINARY 0x10 
+HintColorQ          REG_DWORD
+AutoHighlightColorQ REG_DWORD
+
+There may be other keys present such as HintColor and
+AutoHighlightColor. These are for the legacy idag.exe (non QT).
+
+The Palette key contains the bulk of the color data. Within IDA, 
+one can select one of four palettes. This feature is not very useful
+as one has to manually modify other fields such as AutoHighlightColorQ.
+
+The Palette offsets listed in palette_offsets.py only list the first set
+of palettes, but these repeat for all four sets. An offset not listed
+in the file describes which palette is active.
+
